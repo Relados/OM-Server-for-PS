@@ -37,10 +37,13 @@ exports.BattleFormats = {
 	},
 	unratedchallengecup: {
 		effectType: 'Format',
-		name: "Unrated Challenge Cup",
-		team: 'cc',
+		name: "3v3",
+		rate: true,
+		challengeShow: true,
 		searchShow: true,
-		ruleset: ['Challenge Cup']
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
 	},
 	ou: {
 		effectType: 'Format',
@@ -70,8 +73,8 @@ exports.BattleFormats = {
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Drizzle ++ Swift Swim', 'Eviolite', 'NU']
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'NFE'],
+		banlist: ['Eviolite']
 	},
 	cap: {
 		effectType: 'Format',
@@ -141,6 +144,26 @@ exports.BattleFormats = {
 		ruleset: ['NU'],
 		banlist: ["Charizard", "Wartortle", "Vileplume", "Kadabra", "Golem", "Haunter", "Exeggutor", "Marowak", "Weezing", "Tangela", "Kangaskhan", "Electabuzz", "Pinsir", "Tauros", "Lapras", "Flareon", "Ampharos", "Jumpluff", "Misdreavus", "Ursaring", "Piloswine", "Miltank", "Linoone", "Ludicolo", "Swellow", "Gardevoir", "Ninjask", "Camerupt", "Torkoal", "Cacturne", "Altaria", "Armaldo", "Absol", "Gorebyss", "Regirock", "Regice", "Torterra", "Rampardos", "Bastiodon", "Floatzel", "Drifblim", "Skuntank", "Lickilicky", "Probopass", "Rotom-Fan", "Serperior", "Emboar", "Samurott", "Musharna", "Zebstrika", "Gigalith", "Gurdurr", "Sawk", "Carracosta", "Garbodor", "Cinccino", "Sawsbuck", "Amoonguss", "Alomomola", "Golurk", "Braviary"]
 	},
+	nu: {
+		effectType: 'Format',
+		name: "Middle Cup",
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Middle Cup'],
+		banlist: ['Eviolite']
+	},
+	lc: {
+		effectType: 'Format',
+		name: "Fail Cup",
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Fail Cup'],
+		banlist: ['Shadow Tag', 'Eviolite']
+	}
 	haxmons: {
 		effectType: 'Format',
 		name: "Haxmons",
@@ -395,6 +418,45 @@ exports.BattleFormats = {
 			}
 			if (!set.level || set.level > 5) {
 				set.level = 5;
+			}
+		}
+	},
+	nfe: {
+		effectType: 'Rule',
+		validateSet: function(set) {
+			var template = this.getTemplate(set.species || set.name);
+			
+			if (!template.evos) {
+				return [set.species+" is fully evolved."];
+			}
+			if (!template.nfe) {
+				return [set.species+" doesn't have an evolution family."];
+			}
+		}
+	},
+	middlecup: {
+		effectType: 'Rule',
+		validateSet: function(set) {
+			var template = this.getTemplate(set.species || set.name);
+			
+			if (!template.evos) {
+				return [set.species+" is not a middle evolution."];
+			}
+			if (!template.prevo) {
+				return [set.species+" is not a middle evolution."];
+			}
+			if (!templae.nfe) {
+				return [set.species+" doesn't have an evolution family."];
+			}
+		}
+	},
+	failcup: {
+		effectType: 'Rule',
+		validateSet: function(set) {
+			var template = this.getTemplate(set.species || set.name);
+			
+			if (!((set.species === 'Caterpie') || (set.species === 'Metapod') || (set.species === 'Weedle') || (set.species === 'Kakuna') || (set.species === 'Magikarp') || (set.species === 'Ditto') || (set.species === 'Unown') || (set.species === 'Wurmple') || (set.species === 'Silcoon') || (set.species === 'Cascoon') || (set.species === 'Beldum') || (set.species === 'Kricketot') || (set.species === 'Burmy') || (set.species === 'Combee') || (set.species === 'Tynamo'))) {
+				return [set.species+" isn't a Fail Cup pokemon."];
 			}
 		}
 	},
