@@ -19,11 +19,15 @@ exports.BattleFormats = {
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause']
 	},
 	unratedrandombattle: {
+		mod: 'gen4',
 		effectType: 'Format',
-		name: "Unrated Random Battle",
-		team: 'random',
+		name: "[Gen 4] OU",
+		rated: true,
+		challengeShow: true,
 		searchShow: true,
-		ruleset: ['Random Battle']
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Uber']
 	},
 	challengecup: {
 		effectType: 'Format',
@@ -38,7 +42,7 @@ exports.BattleFormats = {
 	unratedchallengecup: {
 		effectType: 'Format',
 		name: "3v3",
-		rate: true,
+		rated: true,
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
@@ -48,7 +52,7 @@ exports.BattleFormats = {
 	ou: {
 		effectType: 'Format',
 		name: "Clear Skies",
-		rate: true,
+		rated: true,
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
@@ -58,7 +62,7 @@ exports.BattleFormats = {
 	ubers: {
 		effectType: 'Format',
 		name: "Six Move OU",
-		rate: true,
+		rated: true,
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
