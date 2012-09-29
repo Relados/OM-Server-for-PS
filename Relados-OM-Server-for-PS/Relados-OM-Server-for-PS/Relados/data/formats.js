@@ -167,7 +167,7 @@ exports.BattleFormats = {
 		isTeambuilderFormat: true,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Fail Cup'],
 		banlist: ['Shadow Tag', 'Eviolite']
-	}
+	},
 	haxmons: {
 		effectType: 'Format',
 		name: "Haxmons",
