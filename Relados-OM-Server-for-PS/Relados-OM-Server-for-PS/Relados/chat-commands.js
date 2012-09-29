@@ -1038,8 +1038,9 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			'- UU is NFE tier<br />' +
 			'- RU is PU<br />' +
 			'- NU is Middle Cup<br />' +
-			'- LC is Fail Cup<br />' + 
-			'- Unrated Challenge Cup is 3v3<br />' +
+			'- LC is 3v3<br />' + 
+			'- PU (when challenging someone) is Fail Cup (challenge only)<br />' +
+			'- DW UU is D/P OU<br />' +
 			'</div>');
 		return false;
 		break;
