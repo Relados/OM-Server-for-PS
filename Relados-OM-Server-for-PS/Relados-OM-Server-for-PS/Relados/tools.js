@@ -603,7 +603,10 @@ module.exports = (function () {
 		if (!team.length) {
 			return ["Your team has no pokemon."];
 		}
-		if (team.length>6) {
+		if (format.name === "3v3" && team.length>3) {
+			return ["Your team has more than 3 pokemon."];
+		}
+		else if (team.length>6) {
 			return ["Your team has more than 6 pokemon."];
 		}
 		var teamHas = {};
