@@ -19,15 +19,11 @@ exports.BattleFormats = {
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause']
 	},
 	unratedrandombattle: {
-		mod: 'gen4',
 		effectType: 'Format',
-		name: "[Gen 4] OU",
-		rated: true,
-		challengeShow: true,
+		name: "Unrated Random Battle",
+		team: 'random',
 		searchShow: true,
-		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber']
+		ruleset: ['Random Battle']
 	},
 	challengecup: {
 		effectType: 'Format',
@@ -41,13 +37,10 @@ exports.BattleFormats = {
 	},
 	unratedchallengecup: {
 		effectType: 'Format',
-		name: "3v3",
-		rated: true,
-		challengeShow: true,
+		name: "Unrated Challenge Cup",
+		team: 'cc',
 		searchShow: true,
-		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
+		ruleset: ['Challenge Cup']
 	},
 	ou: {
 		effectType: 'Format',
@@ -112,11 +105,15 @@ exports.BattleFormats = {
 		banlist: ['Drizzle ++ Swift Swim', 'Soul Dew', 'Arceus', 'Arceus-Bug', 'Arceus-Dark', 'Arceus-Dragon', 'Arceus-Electric', 'Arceus-Fighting', 'Arceus-Fire', 'Arceus-Flying', 'Arceus-Ghost', 'Arceus-Grass', 'Arceus-Ground', 'Arceus-Ice', 'Arceus-Poison', 'Arceus-Psychic', 'Arceus-Rock', 'Arceus-Steel', 'Arceus-Water', 'Blaziken', 'Darkrai', 'Deoxys', 'Deoxys-Attack', 'Dialga', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Zekrom']
 	},
 	dwuu: {
+		mod: 'gen4',
 		effectType: 'Format',
-		name: "DW UU",
+		name: "[Gen 4] OU",
+		rated: true,
 		challengeShow: true,
-		ruleset: ['DW OU'],
-		banlist: ['Chandelure', 'Genesect', 'Tyranitar', 'Dragonite', 'Breloom', 'Ferrothorn', 'Politoed', 'Gliscor', 'Ninetales', 'Scizor', 'Excadrill', 'Keldeo', 'Infernape', 'Venusaur', 'Heatran', 'Rotom-Wash', 'Garchomp', 'Serperior', 'Gengar', 'Volcarona', 'Forretress', 'Conkeldurr', 'Espeon', 'Cloyster', 'Skarmory', 'Starmie', 'Salamence', 'Gyarados', 'Zapdos', 'Jirachi', 'Latios', 'Tentacruel', 'Haxorus', 'Landorus', 'Mamoswine', 'Charizard', 'Lucario', 'Jellicent', 'Blissey', 'Terrakion', 'Heracross', 'Metagross', 'Ditto', 'Hydreigon', 'Thundurus', 'Alakazam', 'Deoxys-Speed', 'Latias', 'Gastrodon', 'Togekiss', 'Donphan', 'Bronzong', 'Manaphy']
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Uber']
 	},
 	hackmons: {
 		effectType: 'Format',
@@ -160,13 +157,13 @@ exports.BattleFormats = {
 	},
 	lc: {
 		effectType: 'Format',
-		name: "Fail Cup",
+		name: "3v3",
 		rated: true,
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Fail Cup'],
-		banlist: ['Shadow Tag', 'Eviolite']
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
 	},
 	haxmons: {
 		effectType: 'Format',
@@ -186,6 +183,16 @@ exports.BattleFormats = {
 		banlist: ['Illegal', 'Unreleased'],
 		mimicGlitch: true
 	},
+	pu: {
+		effectType: 'Format',
+		name: "Fail Cup",
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Fail Cup'],
+		banlist: ['Shadow Tag', 'Eviolite']
+	},
 	debugmode: {
 		effectType: 'Format',
 		name: "Debug Mode",
@@ -198,10 +205,13 @@ exports.BattleFormats = {
 	gen4hackmons: {
 		mod: 'gen4',
 		effectType: 'Format',
-		name: "[Gen 4] Hackmons",
+		name: "[Gen 4] OU",
+		rated: true,
 		challengeShow: true,
-		ruleset: ['Pokemon'],
-		banlist: []
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Uber']
 	},
 	gen4debugmode: {
 		mod: 'gen4',
