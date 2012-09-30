@@ -25,19 +25,6 @@ exports.BattleAbilities = {
 		rating: 3,
 		num: 18
 	},
-	"guts": {
-		desc: "When this Pokemon is poisoned (including Toxic), burned, paralyzed or asleep (including self-induced Rest), its Attack stat receives a 50% boost; the burn status' Attack drop is also ignored.",
-		shortDesc: "If this Pokemon is statused, its Attack is 1.5x; burn's Attack drop is ignored.",
-		onModifyStats: function(stats, pokemon) {
-			if (pokemon.status && !(pokemon.status === 'slp')) {
-				stats.atk *= 1.5;
-			}
-		},
-		id: "guts",
-		name: "Guts",
-		rating: 3,
-		num: 62
-	},
 	"lightningrod": {
 		desc: "During double battles, this Pokemon draws any single-target Electric-type attack to itself. If an opponent uses an Electric-type attack that affects multiple Pokemon, those targets will be hit. This ability does not affect Electric Hidden Power or Judgment.",
 		shortDesc: "This Pokemon draws Electric moves to itself.",
