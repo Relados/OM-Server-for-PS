@@ -1040,7 +1040,8 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			'- NU is Middle Cup<br />' +
 			'- LC is 3v3<br />' + 
 			'- PU (when challenging someone) is Fail Cup (challenge only)<br />' +
-			'- DW UU is D/P OU<br />' +
+			'- DW UU is D/P OU (challenge only)<br />' +
+			'- Gen 4 Hackmons is R/S/E OU (challenge only)<br />' +
 			'</div>');
 		return false;
 		break;
