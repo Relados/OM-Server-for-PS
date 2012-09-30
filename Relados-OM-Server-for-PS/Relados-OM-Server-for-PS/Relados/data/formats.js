@@ -112,7 +112,7 @@ exports.BattleFormats = {
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber']
 	},
 	hackmons: {
@@ -203,14 +203,14 @@ exports.BattleFormats = {
 		ruleset: []
 	},
 	gen4hackmons: {
-		mod: 'gen4',
+		mod: 'gen3',
 		effectType: 'Format',
-		name: "[Gen 4] OU",
+		name: "[Gen 3] OU",
 		rated: true,
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber']
 	},
 	gen4debugmode: {
