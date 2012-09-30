@@ -2550,7 +2550,7 @@ exports.BattleFormatsData = {
 			{"generation":3,"level":50,"moves":["refresh","dragonclaw","dragondance","aerialace"]},
 		],
 		
-		tier: "Uber"
+		tier: "OU"
 	},
 	beldum: {
 		viableMoves: {"ironhead":1,"zenheadbutt":1,"headbutt":1,"irondefense":1},
