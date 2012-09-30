@@ -1006,6 +1006,8 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 	
 	case 'othermetas':
 	case '!othermetas':
+	case 'oms':
+	case '!oms':
 		showOrBroadcastStart(user, cmd, room, socket, message);
 		showOrBroadcast(user, cmd, room, socket,
 			'<div style="border:1px solid #6688AA;padding:2px 4px">A list of all Other Metagames supported here:<br />' +
@@ -1017,6 +1019,29 @@ function parseCommandLocal(user, cmd, target, room, socket, message) {
 			'- <a href="http://www.smogon.com/forums/showthread.php?t=3463764" target="_blank">Balanced Hackmons</a><br />' +
 			'- <a href="http://www.smogon.com/forums/showthread.php?t=3467120" target="_blank">Glitchmons</a><br />' +
 			'- <a href="http://www.smogon.com/forums/showthread.php?t=3456012" target="_blank">Clear Skies</a><br />' +
+			'- <a href="http://www.smogon.com/forums/group.php?do=discuss&group=&discussionid=7692" target="_blank">Fail Cup</a><br />' +
+			'- <a href="http://www.smogon.com/forums/showthread.php?t=3453293" target="_blank">Middle Cup</a><br />' +
+			'- <a href="http://www.smogon.com/forums/showthread.php?t=3472399" target="_blank">3v3</a><br />' +
+			'</div>');
+		return false;
+		break;
+		
+	case 'omnames':
+	case '!omnames':
+	case 'pseudonyms':
+	case '!pseudonyms':
+		showOrBroadcastStart(user, cmd, room, socket, message);
+		showOrBroadcast(user, cmd, room, socket,
+			'<div style="border:1px solid #6688AA;padding:2px 4px">All other metagames currently go under pseudonyms on the formats dropdown:<br />' +
+			'- OU is Clear Skies<br />' +
+			'- Ubers is Six Move OU<br />' +
+			'- UU is NFE tier<br />' +
+			'- RU is PU<br />' +
+			'- NU is Middle Cup<br />' +
+			'- LC is 3v3<br />' + 
+			'- PU (when challenging someone) is Fail Cup (challenge only)<br />' +
+			'- DW UU is D/P OU (challenge only)<br />' +
+			'- Gen 4 Hackmons is R/S/E OU (challenge only)<br />' +
 			'</div>');
 		return false;
 		break;

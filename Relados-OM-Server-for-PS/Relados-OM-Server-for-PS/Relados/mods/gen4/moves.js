@@ -429,6 +429,10 @@ exports.BattleMovedex = {
 		inherit: true,
 		isBounceable: false
 	},
+	outrage: {
+		inherit: true,
+		pp: 15
+	},
 	payback: {
 		inherit: true,
 		basePowerCallback: function(pokemon, target) {

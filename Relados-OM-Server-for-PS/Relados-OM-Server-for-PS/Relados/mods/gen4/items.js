@@ -40,4 +40,20 @@ exports.BattleItems = {
 		},
 		desc: "Activates at 25% HP. Next move used goes first. One-time use."
 	},
+	"mentalherb": {
+		id: "mentalherb",
+		name: "Mental Herb",
+		spritenum: 285,
+		effect: function(pokemon) {
+			var conditions = ['attract'];
+			for (var i=0; i<conditions.length; i++) {
+				if (pokemon.volatiles[conditions[i]]) {
+					for (var j=0; j<conditions.length; j++) {
+						pokemon.removeVolatile(conditions[j]);
+					}
+					return;
+				}
+			}
+		}
+	}
 };

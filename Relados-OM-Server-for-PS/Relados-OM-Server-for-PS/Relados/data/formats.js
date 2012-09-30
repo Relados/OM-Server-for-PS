@@ -45,7 +45,7 @@ exports.BattleFormats = {
 	ou: {
 		effectType: 'Format',
 		name: "Clear Skies",
-		rate: true,
+		rated: true,
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
@@ -55,7 +55,7 @@ exports.BattleFormats = {
 	ubers: {
 		effectType: 'Format',
 		name: "Six Move OU",
-		rate: true,
+		rated: true,
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
@@ -70,8 +70,8 @@ exports.BattleFormats = {
 		challengeShow: true,
 		searchShow: true,
 		isTeambuilderFormat: true,
-		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Drizzle ++ Swift Swim', 'Eviolite', 'NU']
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'NFE'],
+		banlist: ['Eviolite']
 	},
 	cap: {
 		effectType: 'Format',
@@ -105,11 +105,15 @@ exports.BattleFormats = {
 		banlist: ['Drizzle ++ Swift Swim', 'Soul Dew', 'Arceus', 'Arceus-Bug', 'Arceus-Dark', 'Arceus-Dragon', 'Arceus-Electric', 'Arceus-Fighting', 'Arceus-Fire', 'Arceus-Flying', 'Arceus-Ghost', 'Arceus-Grass', 'Arceus-Ground', 'Arceus-Ice', 'Arceus-Poison', 'Arceus-Psychic', 'Arceus-Rock', 'Arceus-Steel', 'Arceus-Water', 'Blaziken', 'Darkrai', 'Deoxys', 'Deoxys-Attack', 'Dialga', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Zekrom']
 	},
 	dwuu: {
+		mod: 'gen4',
 		effectType: 'Format',
-		name: "DW UU",
+		name: "[Gen 4] OU",
+		rated: true,
 		challengeShow: true,
-		ruleset: ['DW OU'],
-		banlist: ['Chandelure', 'Genesect', 'Tyranitar', 'Dragonite', 'Breloom', 'Ferrothorn', 'Politoed', 'Gliscor', 'Ninetales', 'Scizor', 'Excadrill', 'Keldeo', 'Infernape', 'Venusaur', 'Heatran', 'Rotom-Wash', 'Garchomp', 'Serperior', 'Gengar', 'Volcarona', 'Forretress', 'Conkeldurr', 'Espeon', 'Cloyster', 'Skarmory', 'Starmie', 'Salamence', 'Gyarados', 'Zapdos', 'Jirachi', 'Latios', 'Tentacruel', 'Haxorus', 'Landorus', 'Mamoswine', 'Charizard', 'Lucario', 'Jellicent', 'Blissey', 'Terrakion', 'Heracross', 'Metagross', 'Ditto', 'Hydreigon', 'Thundurus', 'Alakazam', 'Deoxys-Speed', 'Latias', 'Gastrodon', 'Togekiss', 'Donphan', 'Bronzong', 'Manaphy']
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber']
 	},
 	hackmons: {
 		effectType: 'Format',
@@ -141,6 +145,26 @@ exports.BattleFormats = {
 		ruleset: ['NU'],
 		banlist: ["Charizard", "Wartortle", "Vileplume", "Kadabra", "Golem", "Haunter", "Exeggutor", "Marowak", "Weezing", "Tangela", "Kangaskhan", "Electabuzz", "Pinsir", "Tauros", "Lapras", "Flareon", "Ampharos", "Jumpluff", "Misdreavus", "Ursaring", "Piloswine", "Miltank", "Linoone", "Ludicolo", "Swellow", "Gardevoir", "Ninjask", "Camerupt", "Torkoal", "Cacturne", "Altaria", "Armaldo", "Absol", "Gorebyss", "Regirock", "Regice", "Torterra", "Rampardos", "Bastiodon", "Floatzel", "Drifblim", "Skuntank", "Lickilicky", "Probopass", "Rotom-Fan", "Serperior", "Emboar", "Samurott", "Musharna", "Zebstrika", "Gigalith", "Gurdurr", "Sawk", "Carracosta", "Garbodor", "Cinccino", "Sawsbuck", "Amoonguss", "Alomomola", "Golurk", "Braviary"]
 	},
+	nu: {
+		effectType: 'Format',
+		name: "Middle Cup",
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Middle Cup'],
+		banlist: ['Eviolite']
+	},
+	lc: {
+		effectType: 'Format',
+		name: "3v3",
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
+	},
 	haxmons: {
 		effectType: 'Format',
 		name: "Haxmons",
@@ -159,6 +183,16 @@ exports.BattleFormats = {
 		banlist: ['Illegal', 'Unreleased'],
 		mimicGlitch: true
 	},
+	pu: {
+		effectType: 'Format',
+		name: "Fail Cup",
+		rated: true,
+		challengeShow: true,
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Fail Cup'],
+		banlist: ['Shadow Tag', 'Eviolite']
+	},
 	debugmode: {
 		effectType: 'Format',
 		name: "Debug Mode",
@@ -169,12 +203,15 @@ exports.BattleFormats = {
 		ruleset: []
 	},
 	gen4hackmons: {
-		mod: 'gen4',
+		mod: 'gen3',
 		effectType: 'Format',
-		name: "[Gen 4] Hackmons",
+		name: "[Gen 3] OU",
+		rated: true,
 		challengeShow: true,
-		ruleset: ['Pokemon'],
-		banlist: []
+		searchShow: true,
+		isTeambuilderFormat: true,
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber']
 	},
 	gen4debugmode: {
 		mod: 'gen4',
@@ -395,6 +432,45 @@ exports.BattleFormats = {
 			}
 			if (!set.level || set.level > 5) {
 				set.level = 5;
+			}
+		}
+	},
+	nfe: {
+		effectType: 'Rule',
+		validateSet: function(set) {
+			var template = this.getTemplate(set.species || set.name);
+			
+			if (!template.evos) {
+				return [set.species+" is fully evolved."];
+			}
+			if (!template.nfe) {
+				return [set.species+" doesn't have an evolution family."];
+			}
+		}
+	},
+	middlecup: {
+		effectType: 'Rule',
+		validateSet: function(set) {
+			var template = this.getTemplate(set.species || set.name);
+			
+			if (!template.evos) {
+				return [set.species+" is not a middle evolution."];
+			}
+			if (!template.prevo) {
+				return [set.species+" is not a middle evolution."];
+			}
+			if (!templae.nfe) {
+				return [set.species+" doesn't have an evolution family."];
+			}
+		}
+	},
+	failcup: {
+		effectType: 'Rule',
+		validateSet: function(set) {
+			var template = this.getTemplate(set.species || set.name);
+			
+			if (!((set.species === 'Caterpie') || (set.species === 'Metapod') || (set.species === 'Weedle') || (set.species === 'Kakuna') || (set.species === 'Magikarp') || (set.species === 'Ditto') || (set.species === 'Unown') || (set.species === 'Wurmple') || (set.species === 'Silcoon') || (set.species === 'Cascoon') || (set.species === 'Beldum') || (set.species === 'Kricketot') || (set.species === 'Burmy') || (set.species === 'Combee') || (set.species === 'Tynamo'))) {
+				return [set.species+" isn't a Fail Cup pokemon."];
 			}
 		}
 	},

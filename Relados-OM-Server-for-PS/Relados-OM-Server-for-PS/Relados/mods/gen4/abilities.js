@@ -43,6 +43,23 @@ exports.BattleAbilities = {
 		rating: 0,
 		num: 1
 	},
+	"shedskin": {
+		desc: "After each turn, this Pokemon has a 33% chance to heal itself from poison (including Toxic), paralysis, burn, freeze or sleep (including self-induced Rest).",
+		shortDesc: "This Pokemon has a 33% chance to have its status cured at the end of each turn.",
+		onResidualOrder: 5,
+		onResidualSubOrder: 1,
+		onResidual: function(pokemon) {
+			if (pokemon.status && this.random(10) > 3) {
+				this.debug('shed skin');
+				this.add('-activate', pokemon, 'ability: Shed Skin');
+				pokemon.cureStatus();
+			}
+		},
+		id: "shedskin",
+		name: "Shed Skin",
+		rating: 3,
+		num: 61
+	},
 	"stench": {
 		desc: "No in-battle effect.",
 		shortDesc: "No in-battle effect.",
