@@ -2027,6 +2027,7 @@ exports.BattleFormatsData = {
 		viableMoves: {"waterfall":1,"earthpower":1,"superpower":1,"icebeam":1},
 		eventPokemon: [
 			{"generation":3,"level":10,"gender":"M","abilities":["torrent"],"moves":["tackle","growl","mudslap","watergun"]},
+			{"generation":5,"level":10,"gender":"M","abilities":["damp"],"moves":["tackle","growl","mudslap","watergun"]}
 		],
 		
 		
