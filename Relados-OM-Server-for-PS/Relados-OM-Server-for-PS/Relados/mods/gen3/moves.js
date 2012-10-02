@@ -471,8 +471,8 @@ exports.BattleMovedex = {
 		priority: 0,
 		onModifyMove: function(move, pokemon) {
 			move.type = pokemon.hpType || 'Dark';
-			if ((move.type === 'Dark') || (move.type === 'Psychic') || (move.type === 'Fire') || (move.type === 'Water') || (move.type === 'Electric') || (move.type === 'Grass') || (move.type === 'Ice') || (move.type === 'Dragon')) move.category = "Special";
-			else move.category = "Physical";
+			if ((move.type === 'Dark') || (move.type === 'Psychic') || (move.type === 'Fire') || (move.type === 'Water') || (move.type === 'Electric') || (move.type === 'Grass') || (move.type === 'Ice') || (move.type === 'Dragon')) move.category = 'Special';
+			else move.category = 'Physical';
 		},
 		secondary: false,
 		target: "normal",
