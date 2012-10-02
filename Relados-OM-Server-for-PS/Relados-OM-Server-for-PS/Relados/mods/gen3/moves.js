@@ -478,6 +478,38 @@ exports.BattleMovedex = {
 		target: "normal",
 		type: "Normal"
 	},
+	hiddenpowerbug: {
+		inherit: true,
+		category: "Physical"
+	},
+	hiddenpowerfighting: {
+		inherit: true,
+		category: "Physical"
+	},
+	hiddenpowerflying: {
+		inherit: true,
+		category: "Physical"
+	},
+	hiddenpowerghost: {
+		inherit: true,
+		category: "Physical"
+	},
+	hiddenpowerground: {
+		inherit: true,
+		category: "Physical"
+	},
+	hiddenpowerpoison: {
+		inherit: true,
+		category: "Physical"
+	},
+	hiddenpowerrock: {
+		inherit: true,
+		category: "Physical"
+	},
+	hiddenpowersteel: {
+		inherit: true,
+		category: "Physical"
+	},
 	hijumpkick: {
 		inherit: true,
 		basePower: 85,
@@ -859,3 +891,4 @@ exports.BattleMovedex = {
 	},
 	magikarpsrevenge: null
 };
+
