@@ -11,8 +11,24 @@ exports.BattleMovedex = {
 		pp: 20
 	},
 	acid: {
-		inherit: true,
-		category: "Physical"
+		num: 51,
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		desc: "Deals damage to all adjacent foes with a 10% chance to lower their Special Defense by 1 stage each.",
+		shortDesc: "10% chance to lower the foe(s) Sp. Def by 1.",
+		id: "acid",
+		name: "Acid",
+		pp: 30,
+		priority: 0,
+		secondary: {
+			chance: 10,
+			boosts: {
+				def: -1
+			}
+		},
+		target: "foes",
+		type: "Poison"
 	},
 	aeroblast: {
 		inherit: true,
@@ -24,7 +40,8 @@ exports.BattleMovedex = {
 	},
 	ancientpower: {
 		inherit: true,
-		category: "Physical"
+		category: "Physical",
+		isContact: true
 	},
 	assist: {
 		inherit: true,
@@ -52,6 +69,28 @@ exports.BattleMovedex = {
 			this.useMove(move, target);
 		}
 	},
+	astonish: {
+		num: 310,
+		accuracy: 100,
+		basePower: 30,
+		basePowerCallback: function(pokemon, target) {
+			if (target.volatiles['minimize']) return 60;
+			return 35;
+		},
+		category: "Physical",
+		desc: "Deals damage to one adjacent target with a 30% chance to flinch it. Makes contact.",
+		shortDesc: "30% chance to flinch the target.",
+		id: "astonish",
+		name: "Astonish",
+		pp: 15,
+		priority: 0,
+		isContact: true,
+		secondary: {
+			chance: 30,
+			volatileStatus: 'flinch'
+		},
+		target: "normal",
+		type: "Ghost"
 	beatup: {
 		inherit: true,
 		basePower: 10,
@@ -63,6 +102,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		desc: "The user spends two to three turns locked into this move and then, on the second turn after using this move, the user attacks the last Pokemon that hit it, inflicting double the damage in HP it lost during the two turns. If the last Pokemon that hit it is no longer on the field, the user attacks a random foe instead. If the user is prevented from moving during this move's use, the effect ends. This move ignores Accuracy and Evasion modifiers and can hit Ghost-types. Makes contact. Priority +1.",
 		shortDesc: "Waits 2-3 turns; deals double the damage taken.",
+		priority: 0,
 		effect: {
 			duration: 2+random(),
 			onLockMove: 'bide',
@@ -213,7 +253,8 @@ exports.BattleMovedex = {
 	},
 	covet: {
 		inherit: true,
-		basePower: 40
+		basePower: 40,
+		isContact: false
 	},
 	crabhammer: {
 		inherit: true,
@@ -222,7 +263,13 @@ exports.BattleMovedex = {
 	},
 	crunch: {
 		inherit: true,
-		category: "Special"
+		category: "Special",
+		secondary: {
+			chance: 20,
+			boosts: {
+				spd: -1
+			}
+		},
 	},
 	curse: {
 		inherit: true,
@@ -235,7 +282,28 @@ exports.BattleMovedex = {
 	},
 	dig: {
 		inherit: true,
-		basePower: 60
+		basePower: 60,
+		effect: {
+			duration: 2,
+			onLockMove: 'dig',
+			onImmunity: function(type, pokemon) {
+				if (type === 'sandstorm' || type === 'hail') return false;
+			},
+			onSourceModifyMove: function(move) {
+				if (move.target === 'foeSide') return;
+				if (move.id === 'earthquake' || move.id === 'magnitude' || move.id === 'fissure') {
+					// should not normally be done in ModifyMove event,
+					// but it's faster to do this here than in
+					// onFoeBasePower
+					if (!move.basePowerModifier) move.basePowerModifier = 1;
+					move.basePowerModifier *= 2;
+					return;
+				} else if (move.id === 'fissure') {
+					return;
+				}
+				move.accuracy = 0;
+			}
+		},
 	},
 	disable: {
 		inherit: true,
@@ -246,7 +314,7 @@ exports.BattleMovedex = {
 		volatileStatus: 'disable',
 		effect: {
 			durationCallback: function() {
-				return this.random(4,8);
+				return this.random(2,6);
 			},
 			noCopy: true,
 			onStart: function(pokemon) {
@@ -325,7 +393,7 @@ exports.BattleMovedex = {
 		volatileStatus: 'encore',
 		effect: {
 			durationCallback: function() {
-				return this.random(4,9);
+				return this.random(3,7);
 			},
 			onStart: function(target) {
 				var noEncore = {encore:1,mimic:1,mirrormove:1,sketch:1,transform:1};
@@ -379,19 +447,51 @@ exports.BattleMovedex = {
 		basePower: 500,
 		//desc: ""
 	},
+	extrasensory: {
+		inherit: true,
+		basePowerCallback: function(pokemon, target) {
+			if (target.volatiles['minimize']) return 160;
+			return 80;
+		}
+	},
 	extremespeed: {
 		inherit: true,
 		shortDesc: "Usually goes first.",
 		priority: 1
 	},
+	facade: {
+		num: 263,
+		accuracy: 100,
+		basePower: 70,
+		basePowerCallback: function(pokemon) {
+			if (pokemon.status && pokemon.status !== 'sleep') {
+				return 140;
+			}
+			return 70;
+		},
+		category: "Physical",
+		desc: "Deals damage to one adjacent target. Power doubles if the user is burned, paralyzed, or poisoned. Makes contact.",
+		shortDesc: "Power doubles when user is inflicted by a status.",
+		id: "facade",
+		isViable: true,
+		name: "Facade",
+		pp: 20,
+		priority: 0,
+		isContact: true,
+		secondary: false,
+		target: "normal",
+		type: "Normal"
+	},
 	faintattack: {
 		inherit: true,
-		category: "Special"
+		category: "Special",
+		isContact: false
 	},
 	fakeout: {
 		inherit: true,
 		shortDesc: "Usually hits first; first turn out only; target flinch.",
-		priority: 1
+		priority: 1,
+		isContact: false
 	},
 	firepunch: {
 		inherit: true,
@@ -401,6 +501,42 @@ exports.BattleMovedex = {
 		inherit: true,
 		accuracy: 70,
 		basePower: 15
+	},
+	flail: {
+		num: 175,
+		accuracy: 100,
+		basePower: false,
+		basePowerCallback: function(pokemon, target) {
+			var hpPercent = pokemon.hpPercent(pokemon.hp);
+			if (hpPercent <= 5) {
+				return 200;
+			}
+			if (hpPercent <= 10) {
+				return 150;
+			}
+			if (hpPercent <= 20) {
+				return 100;
+			}
+			if (hpPercent <= 35) {
+				return 80;
+			}
+			if (hpPercent <= 70) {
+				return 40;
+			}
+			return 20;
+		},
+		category: "Physical",
+		desc: "Deals damage to one adjacent target based on the amount of HP the user has left. X is equal to (user's current HP * 48 / user's maximum HP), rounded down; the base power of this attack is 20 if X is 33 to 48, 40 if X is 17 to 32, 80 if X is 10 to 16, 100 if X is 5 to 9, 150 if X is 2 to 4, and 200 if X is 0 or 1. Makes contact.",
+		shortDesc: "More power the less HP the user has left.",
+		id: "flail",
+		isViable: true,
+		name: "Flail",
+		pp: 15,
+		priority: 0,
+		isContact: true,
+		secondary: false,
+		target: "normal",
+		type: "Normal"
 	},
 	flamewheel: {
 		inherit: true,
@@ -414,7 +550,6 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 70
 	},
-	
 	foresight: {
 		inherit: true,
 		isBounceable: false
@@ -439,7 +574,8 @@ exports.BattleMovedex = {
 	},
 	glare: {
 		inherit: true,
-		accuracy: 75
+		accuracy: 75,
+		affectedByImmunities: true
 	},
 	growth: {
 		inherit: true,
@@ -566,6 +702,30 @@ exports.BattleMovedex = {
 		basePower: 70,
 		category: "Special"
 	},
+	lowkick: {
+		num: 67,
+		accuracy: 100,
+		basePower: false,
+		basePowerCallback: function(pokemon, target) {
+			var targetWeight = target.weightkg;
+			if (target.weightkg >= 200) {
+				return 120;
+			}
+			if (target.weightkg >= 100) {
+				return 100;
+			}
+			if (target.weightkg >= 50) {
+				return 80;
+			}
+			if (target.weightkg >= 25) {
+				return 60;
+			}
+			if (target.weightkg >= 10) {
+				return 40;
+			}
+			return 20;
+		}
+	},
 	megadrain: {
 		inherit: true,
 		pp: 10
@@ -578,9 +738,42 @@ exports.BattleMovedex = {
 		inherit: true,
 		category: "Physical"
 	},
+	mirrormove: {
+		num: 119,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user uses the last move used by a selected adjacent target. The copied move is used against that target, if possible. Fails if the target has not yet used a move, or the last move used was Acupressure, After You, Aromatherapy, Chatter, Conversion 2, Counter, Curse, Doom Desire, Feint, Final Gambit, Focus Punch, Future Sight, Gravity, Guard Split, Hail, Haze, Heal Bell, Heal Pulse, Helping Hand, Light Screen, Lucky Chant, Me First, Mimic, Mirror Coat, Mist, Mud Sport, Nature Power, Perish Song, Power Split, Psych Up, Quick Guard, Rain Dance, Reflect, Reflect Type, Role Play, Safeguard, Sandstorm, Sketch, Spikes, Spit Up, Stealth Rock, Struggle, Sunny Day, Tailwind, Toxic Spikes, Transform, Water Sport, Wide Guard, or any move that is self-targeting.",
+		shortDesc: "User uses the target's last used move against it.",
+		id: "mirrormove",
+		name: "Mirror Move",
+		pp: 20,
+		priority: 0,
+		isNotProtectable: true,
+		onTryHit: function(target) {
+			var noMirrorMove = {acupressure:1, afteryou:1, aromatherapy:1, chatter:1, conversion2:1, curse:1, doomdesire:1, feint:1, finalgambit:1, focuspunch:1, futuresight:1, gravity:1, guardsplit:1, hail:1, haze:1, healbell:1, healpulse:1, helpinghand:1, lightscreen:1, luckychant:1, mefirst:1, mimic:1, mirrorcoat:1, mirrormove:1, mist:1, mudsport:1, naturepower:1, perishsong:1, powersplit:1, psychup:1, quickguard:1, raindance:1, reflect:1, reflecttype:1, roleplay:1, safeguard:1, sandstorm:1, sketch:1, spikes:1, spitup:1, stealthrock:1, sunnyday:1, tailwind:1, taunt:1, teeterdance:1, toxicspikes:1, transform:1, watersport:1, wideguard:1};
+			if (!target.lastMove || noMirrorMove[target.lastMove] || this.getMove(target.lastMove).target === 'self') {
+				return false;
+			}
+		},
+		onHit: function(target, source) {
+			this.useMove(this.lastMove, source);
+		},
+		secondary: false,
+		target: "normal",
+		type: "Flying"
+	},
+	naturepower: {
+		inherit: true,
+		accuracy: 95
+	},
 	needlearm: {
 		inherit: true,
 		category: "Special"
+		basePowerCallback: function(pokemon, target) {
+			if (target.volatiles['minimize']) return 120;
+			return 60;
+		}
 	},
 	odorsleuth: {
 		inherit: true,
@@ -591,6 +784,10 @@ exports.BattleMovedex = {
 		basePower: 90,
 		category: "Special",
 		pp: 15
+	},
+	overheat: {
+		inherit: true,
+		isContact: true
 	},
 	payback: {
 		inherit: true,
@@ -625,25 +822,40 @@ exports.BattleMovedex = {
 		category: "Special"
 	},
 	razorwind: {
-		inherit: true,
-		category: "Physical"
+		num: 13,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "Deals damage to all adjacent foes. This attack charges on the first turn and strikes on the second. The user cannot make a move between turns. If the user is holding a Power Herb, the move completes in one turn.",
+		shortDesc: "Charges, then hits foe(s) turn 2.",
+		id: "razorwind",
+		name: "Razor Wind",
+		pp: 10,
+		priority: 0,
+		isTwoTurnMove: true,
+		onTry: function(attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile(move.id, defender);
+			return null;
+		},
+		effect: {
+			duration: 2,
+			onLockMove: 'razorwind'
+		},
+		secondary: false,
+		target: "foes",
+		type: "Normal"
 	},
 	recover: {
 		inherit: true,
 		pp: 20
-	},
-	rest: {
-		inherit: true,
-		onHit: function(target) {
-			if (target.hp >= target.maxhp) return false;
-			if (!target.setStatus('slp')) this.heal(target.maxhp);
-			else {
-				target.statusData.time = 3;
-				target.statusData.startTime = 3;
-				this.heal(target.maxhp) //Aeshetic only as the healing happens after you fall asleep in-game
-				this.add('-status', target, 'slp', '[from] move: Rest');
-			}
-		}
 	},
 	roar: {
 		inherit: true,
@@ -705,7 +917,14 @@ exports.BattleMovedex = {
 	},
 	spite: {
 		inherit: true,
-		isBounceable: false
+		isBounceable: false,
+		onHit: function(target) {
+			if (target.deductPP(target.lastMove, random(2,6))) {
+				this.add("-activate", target, 'move: Spite', target.lastMove, 4); //not quite sure how to deal with that four right now - it's just graphical though
+				return;
+			}
+			return false;
+		},
 	},
 	stockpile: {
 		inherit: true,
@@ -801,8 +1020,37 @@ exports.BattleMovedex = {
 		pp: 10
 	},
 	volttackle: {
-		inherit: true,
-		category: "Special"
+		num: 344,
+		accuracy: 100,
+		basePower: 120,
+		category: "Special",
+		desc: "Deals damage to one adjacent target. If the target lost HP, the user takes recoil damage equal to 33% that HP, rounded half up, but not less than 1HP. Makes contact.",
+		shortDesc: "Has 1/3 recoil.",
+		id: "volttackle",
+		isViable: true,
+		name: "Volt Tackle",
+		pp: 15,
+		priority: 0,
+		isContact: true,
+		recoil: [1,3],
+		target: "normal",
+		type: "Electric"
+	},
+	waterfall: {
+		num: 127,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "Deals damage to one adjacent target. Makes contact. (Field: Can be used to climb a waterfall.)",
+		shortDesc: "Deals damage.",
+		id: "waterfall",
+		isViable: true,
+		name: "Waterfall",
+		pp: 15,
+		priority: 0,
+		isContact: true,
+		target: "normal",
+		type: "Water"
 	},
 	weatherball: {
 		num: 311,
@@ -891,4 +1139,3 @@ exports.BattleMovedex = {
 	},
 	magikarpsrevenge: null
 };
-
