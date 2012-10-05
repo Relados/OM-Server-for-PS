@@ -364,6 +364,8 @@ exports.BattleMovedex = {
 			spa: 1
 		}
 	},
+	grudge: {
+		
 	healblock: {
 		inherit: true,
 		isBounceable: false
@@ -424,6 +426,31 @@ exports.BattleMovedex = {
 	miracleeye: {
 		inherit: true,
 		isBounceable: false
+	},
+	mirrormove: {
+		num: 119,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user uses the last move used by a selected adjacent target. The copied move is used against that target, if possible. Fails if the target has not yet used a move, or the last move used was Acupressure, After You, Aromatherapy, Chatter, Conversion 2, Counter, Curse, Doom Desire, Feint, Final Gambit, Focus Punch, Future Sight, Gravity, Guard Split, Hail, Haze, Heal Bell, Heal Pulse, Helping Hand, Light Screen, Lucky Chant, Me First, Mimic, Mirror Coat, Mist, Mud Sport, Nature Power, Perish Song, Power Split, Psych Up, Quick Guard, Rain Dance, Reflect, Reflect Type, Role Play, Safeguard, Sandstorm, Sketch, Spikes, Spit Up, Stealth Rock, Struggle, Sunny Day, Tailwind, Toxic Spikes, Transform, Water Sport, Wide Guard, or any move that is self-targeting.",
+		shortDesc: "User uses the target's last used move against it.",
+		id: "mirrormove",
+		name: "Mirror Move",
+		pp: 20,
+		priority: 0,
+		isNotProtectable: true,
+		onTryHit: function(target) {
+			var noMirrorMove = {acupressure:1, afteryou:1, aromatherapy:1, chatter:1, conversion2:1, counter:1, curse:1, doomdesire:1, feint:1, finalgambit:1, focuspunch:1, futuresight:1, gravity:1, grudge:1, guardsplit:1, hail:1, haze:1, healbell:1, healpulse:1, helpinghand:1, lightscreen:1, luckychant:1, mefirst:1, mimic:1, mirrorcoat:1, mirrormove:1, mist:1, mudsport:1, naturepower:1, perishsong:1, powersplit:1, psychup:1, quickguard:1, raindance:1, reflect:1, reflecttype:1, roleplay:1, safeguard:1, sandstorm:1, sketch:1, snatch:1, softboiled:1, spikes:1, spitup:1, stealthrock:1, struggle:1, sunnyday:1, tailwind:1, toxicspikes:1, transform:1, watersport:1, wideguard:1};
+			if (!target.lastMove || noMirrorMove[target.lastMove] || this.getMove(target.lastMove).target === 'self') {
+				return false;
+			}
+		},
+		onHit: function(target, source) {
+			this.useMove(this.lastMove, source);
+		},
+		secondary: false,
+		target: "normal",
+		type: "Flying"
 	},
 	odorsleuth: {
 		inherit: true,
