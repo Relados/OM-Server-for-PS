@@ -459,7 +459,7 @@ exports.BattleFormats = {
 			if (!template.prevo) {
 				return [set.species+" is not a middle evolution."];
 			}
-			if (!templae.nfe) {
+			if (!template.nfe) {
 				return [set.species+" doesn't have an evolution family."];
 			}
 		}
