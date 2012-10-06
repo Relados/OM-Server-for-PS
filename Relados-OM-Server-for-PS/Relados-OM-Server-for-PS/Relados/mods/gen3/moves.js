@@ -1006,6 +1006,7 @@ exports.BattleMovedex = {
 				return null;
 			}
 		},
+		affectedByImmunities: true,
 		onModifyMove: function(move) {
 			move.type = '???';
 		}
@@ -1124,6 +1125,7 @@ exports.BattleMovedex = {
 				return null;
 			}
 		},
+		affectedByImmunities: false,
 		onModifyMove: function(move) {
 			move.type = '???';
 		}
