@@ -39,7 +39,7 @@ exports.BattleStatuses = {
 			if (source.item === 'gripclaw') return 6;
 			return this.random(3,7);
 		}
-	}
+	},
 	sandstorm: {
 		effectType: 'Weather',
 		duration: 5,
