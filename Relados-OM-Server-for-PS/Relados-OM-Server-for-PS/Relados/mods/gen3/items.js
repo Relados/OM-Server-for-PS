@@ -91,6 +91,21 @@ exports.BattleItems = {
 		},
 		desc: "Raises power of Rock-type moves 10%."
 	},
+	"lightball": {
+		id: "lightball",
+		name: "Light Ball",
+		spritenum: 251,
+		fling: {
+			basePower: 30,
+			status: 'par'
+		},
+		onModifyStats: function(stats, pokemon) {
+			if (pokemon.template.species === 'Pikachu') {
+				stats.spa *= 2;
+			}
+		},
+		desc: "Doubles Pikachu's Attack and Special Attack."
+	},
 	"magnet": {
 		id: "magnet",
 		name: "Magnet",
