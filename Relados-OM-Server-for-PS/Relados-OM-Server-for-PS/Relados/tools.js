@@ -407,6 +407,28 @@ module.exports = (function () {
 					for (var i=0, len=lset.length; i<len; i++) {
 						var learned = lset[i];
 						if (learned.substr(1,1) in {L:1,M:1,T:1}) {
+							if (format.mod === 'gen3') {
+								if (learned.substr(0,1) === '3') {
+									// Because the minimum generation for all moves is the third
+									// Gen3 pokemon will automatically be legal with third gen moves from their learnset
+									// And illegal if any moves beyond this generation occur
+									return true;
+								}
+								return false;
+							}
+							if (format.mod === 'gen4') {
+								if (learned.substr(0,1) === '5') {
+									return false;
+								}
+								// Fourth gen behaves a bit more complicated
+								// If a pokemon learns a move in fourth gen, it'll be legal to obtain
+								// If a pokemon learns a move in fifth gen, it's illegal
+								// However, we still have to account for the fact that third gen could still be legal
+								// I'm still not sure I did this right
+								if (learned.substr(0,1) === '4') {
+									return true;
+								}
+							}
 							if (learned.substr(0,1) === '5') {
 								// current-gen level-up, TM, or tutor moves:
 								//   always available
