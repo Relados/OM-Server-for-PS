@@ -364,8 +364,6 @@ exports.BattleMovedex = {
 			spa: 1
 		}
 	},
-	grudge: {
-		
 	healblock: {
 		inherit: true,
 		isBounceable: false
