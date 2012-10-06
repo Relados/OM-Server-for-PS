@@ -1006,10 +1006,7 @@ exports.BattleMovedex = {
 				return null;
 			}
 		},
-		affectedByImmunities: true,
-		onModifyMove: function(move) {
-			move.type = '???';
-		}
+		type: "???"
 	},
 	tickle: {
 		inherit: true,
@@ -1125,10 +1122,7 @@ exports.BattleMovedex = {
 				return null;
 			}
 		},
-		affectedByImmunities: false,
-		onModifyMove: function(move) {
-			move.type = '???';
-		}
+		type: "???"
 	},
 	wish: {
 		inherit: true,
