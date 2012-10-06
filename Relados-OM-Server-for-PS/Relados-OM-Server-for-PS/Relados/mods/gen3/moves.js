@@ -91,6 +91,7 @@ exports.BattleMovedex = {
 		},
 		target: "normal",
 		type: "Ghost"
+	},
 	beatup: {
 		inherit: true,
 		basePower: 10,
@@ -250,6 +251,16 @@ exports.BattleMovedex = {
 	cottonspore: {
 		inherit: true,
 		accuracy: 85
+	},
+	counter: {
+		inherit: true,
+		damageCallback: function(pokemon) {
+			if (pokemon.lastAttackedBy && pokemon.lastAttackedBy.thisTurn && (this.getMove(pokemon.lastAttackedBy.move).category === 'Physical' || this.getmove(pokemon.lastAttackedBy.move).id === 'hiddenpower')) {
+				return 2 * pokemon.lastAttackedBy.damage;
+			}
+			this.add('-fail',pokemon.id);
+			return false;
+		}
 	},
 	covet: {
 		inherit: true,
@@ -653,8 +664,10 @@ exports.BattleMovedex = {
 		shortDesc: "User takes half damage it would have dealt if miss.",
 		pp: 20,
 		onMoveFail: function(target, source, move) {
-			var damage = this.getDamage(source, target, move, true);
-			this.damage(clampIntRange(damage/2, 1, Math.floor(target.maxhp/2)), source);
+			if (target.type !== 'ghost') {
+				var damage = this.getDamage(source, target, move, true);
+				this.damage(clampIntRange(damage/8, 1, Math.floor(target.maxhp/2)), source);
+			}
 		}
 	},
 	hyperbeam: {
@@ -769,7 +782,7 @@ exports.BattleMovedex = {
 	},
 	needlearm: {
 		inherit: true,
-		category: "Special"
+		category: "Special",
 		basePowerCallback: function(pokemon, target) {
 			if (target.volatiles['minimize']) return 120;
 			return 60;
@@ -997,6 +1010,10 @@ exports.BattleMovedex = {
 			move.type = '???';
 		}
 	},
+	tickle: {
+		inherit: true,
+		notSubBlocked: true
+	},
 	torment: {
 		inherit: true,
 		isBounceable: false
@@ -1132,6 +1149,10 @@ exports.BattleMovedex = {
 	wrap: {
 		inherit: true,
 		accuracy: 85
+	},
+	yawn: {
+		inherit: true,
+		notSubBlocked: true
 	},
 	zapcannon: {
 		inherit: true,
