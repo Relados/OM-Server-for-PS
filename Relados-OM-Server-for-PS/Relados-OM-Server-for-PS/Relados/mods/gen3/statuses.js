@@ -40,4 +40,33 @@ exports.BattleStatuses = {
 			return this.random(3,7);
 		}
 	}
+	sandstorm: {
+		effectType: 'Weather',
+		duration: 5,
+		durationCallback: function(source, effect) {
+			if (source && source.item === 'smoothrock') {
+				return 8;
+			}
+			return 5;
+		},
+		onStart: function(battle, source, effect) {
+			if (effect && effect.effectType === 'Ability') {
+				this.effectData.duration = 0;
+				this.add('-weather', 'Sandstorm', '[from] ability: '+effect, '[of] '+source);
+			} else {
+				this.add('-weather', 'Sandstorm');
+			}
+		},
+		onResidualOrder: 1,
+		onResidual: function() {
+			this.add('-weather', 'Sandstorm', '[upkeep]');
+			this.eachEvent('Weather');
+		},
+		onWeather: function(target) {
+			this.damage(target.maxhp/16);
+		},
+		onEnd: function() {
+			this.add('-weather', 'none');
+		}
+	}
 };
