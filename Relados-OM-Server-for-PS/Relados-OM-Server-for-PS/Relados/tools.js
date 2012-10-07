@@ -411,16 +411,16 @@ module.exports = (function () {
 								if (learned.substr(0,1) === '3') {
 									return true;
 								}
-							}
-							if (format.mod === 'gen4') {
+							} else if (format.mod === 'gen4') {
 								if (learned.substr(0,1) === '4') {
 									return true;
 								}
-							}
-							if (learned.substr(0,1) === '5') {
-								// current-gen level-up, TM, or tutor moves:
-								//   always available
-								return true;
+							} else {
+								if (learned.substr(0,1) === '5') {
+									// current-gen level-up, TM, or tutor moves:
+									//   always available
+									return true;
+								}
 							}
 							// past-gen level-up, TM, or tutor moves:
 							//   available as long as the source gen was or was before this gen
