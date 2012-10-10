@@ -137,7 +137,8 @@ exports.BattleMovedex = {
 				this.add('-message', pokemon.name+' is storing energy! (placeholder)');
 				return false;
 			}
-		}
+		},
+		type: "???"
 	},
 	bind: {
 		inherit: true,
